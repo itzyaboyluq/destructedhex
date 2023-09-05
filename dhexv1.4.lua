@@ -123,7 +123,6 @@ local view = Instance.new("TextButton")
 local unview = Instance.new("TextButton")
 local btools = Instance.new("TextButton")
 local nuke = Instance.new("TextButton")
-local rmap = Instance.new("TextButton")
 local naked = Instance.new("TextButton")
 local faceless = Instance.new("TextButton")
 local nolimbs = Instance.new("TextButton")
@@ -324,16 +323,6 @@ nuke.Font = Enum.Font.Roboto
 nuke.Text = "Nuke"
 nuke.TextColor3 = Color3.fromRGB(255, 255, 255)
 nuke.TextSize = 14.000
-
-rmap.Name = "rmap"
-rmap.Parent = scripts
-rmap.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
-rmap.BorderSizePixel = 0
-rmap.Size = UDim2.new(0, 200, 0, 50)
-rmap.Font = Enum.Font.Roboto
-rmap.Text = "Rmap"
-rmap.TextColor3 = Color3.fromRGB(255, 255, 255)
-rmap.TextSize = 14.000
 
 naked.Name = "naked"
 naked.Parent = scripts
@@ -592,14 +581,6 @@ if game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic") then
 spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic"))
 end)
-end
-end
-end)
-
-rmap.MouseButton1Click:Connect(function()
-for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
-if not game:GetService("Players"):FindFirstChild(v) then
-work(v)
 end
 end
 end)
