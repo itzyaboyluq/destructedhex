@@ -772,7 +772,7 @@ end)
 
 unanchor.MouseButton1Click:Connect(function()
 for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-if v:IsA("Weld") then
+if v:IsA("Motor6D") then
 work(v)
 end
 end
