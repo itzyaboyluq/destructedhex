@@ -772,7 +772,7 @@ end)
 
 unanchor.MouseButton1Click:Connect(function()
 for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-if v:FindFirstChild("Rotate") then
+if v:IsA("Weld") or v:IsA("WeldConstraint") then
 work(v)
 end
 end
