@@ -55,6 +55,7 @@ end)
 if success then
 remote = v
 end
+wait(0.5)
 if not char:FindFirstChild("Head") then
 sent = true
 enable = true
