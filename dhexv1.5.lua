@@ -33,7 +33,6 @@ tween:Play()
 end
 
 local remote = "nil"
-local found = false
 local enable = false
 local sent = false
 local LocalPlayer = game:GetService("Players").LocalPlayer
@@ -51,23 +50,20 @@ if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service")
 local success, error = pcall(function()
 game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.Head)
-found = true
 end)
 if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 end 
-wait(1)
-if not LocalPlayer.Character:FindFirstChild("Head") then
-enable = true
+repeat wait() until remote
 sent = true
-end
+enable = true
 end
 end
 end
 end
 end
 
-if sent == false then
+if not sent == true then
 Notify("Vulnerability Checker", "This game is not vulnerable/supported.", 5)
 blurefct(0)
 end
@@ -106,7 +102,8 @@ elseif strl == "me" then
 end
 if enable == true then
 blurefct(0)
-Notify("Destructed Hex", "Made by Luq and Luca", 10)
+print("Using " .. remote.Name)
+Notify("Destructed Hex", "Commands & GUI loaded.", 5)
 local destruct = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
@@ -137,8 +134,46 @@ local ragdoll = Instance.new("TextButton")
 local shutdown = Instance.new("TextButton")
 local punish = Instance.new("TextButton")
 local rseat = Instance.new("TextButton")
+local dstc = Instance.new("ScreenGui")
+local note = Instance.new("Frame")
+local text = Instance.new("TextLabel")
+local logo = Instance.new("ImageLabel")
 
---Properties:
+dstc.Name = "dstc"
+dstc.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+dstc.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+dstc.Parent = game.CoreGui
+
+note.Name = "note"
+note.Parent = dstc
+note.BackgroundColor3 = Color3.fromRGB(44, 45, 45)
+note.BorderColor3 = Color3.fromRGB(0, 0, 0)
+note.Position = UDim2.new(0.088, 0,0.75, 0)
+note.Size = UDim2.new(0, 302, 0, 105)
+
+text.Name = "text"
+text.Parent = note
+text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+text.BackgroundTransparency = 1.000
+text.BorderSizePixel = 0
+text.ClipsDescendants = true
+text.Position = UDim2.new(0, 0, 0.0666668862, 0)
+text.Size = UDim2.new(0, 302, 0, 97)
+text.Font = Enum.Font.SourceSansBold
+text.Text = "Commands: Luq & UI: Luca\nRun admin commands in-game without needing to worry about Filtering Enabled\nUse the internal GUI to execute commands\nStatus: Running"
+text.TextColor3 = Color3.fromRGB(255, 255, 255)
+text.TextSize = 18.000
+text.TextWrapped = true
+text.TextYAlignment = Enum.TextYAlignment.Top
+
+logo.Name = "logo"
+logo.Parent = note
+logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+logo.BackgroundTransparency = 1.000
+logo.Position = UDim2.new(-0.350993365, 0, 0, 0)
+logo.Size = UDim2.new(0, 106, 0, 107)
+logo.Image = "http://www.roblox.com/asset/?id=8388262491"
+logo.ScaleType = Enum.ScaleType.Fit
 
 destruct.Name = "destruct"
 destruct.Parent = game.CoreGui
