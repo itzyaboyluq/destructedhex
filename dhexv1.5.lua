@@ -62,7 +62,8 @@ end
 end
 end
 
-if not sent == true then
+if remote == nil then
+return
 Notify("Vulnerability Checker", "This game is not vulnerable/supported.", 5)
 blurefct(0)
 end
