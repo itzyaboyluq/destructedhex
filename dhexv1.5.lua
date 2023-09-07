@@ -7,6 +7,7 @@ StarterGui:SetCore("SendNotification", {
 	Title = tl;
 	Text = t;
 	Duration = d;
+			}
 end
 end
 
