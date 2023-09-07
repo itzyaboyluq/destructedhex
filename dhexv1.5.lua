@@ -51,8 +51,10 @@ for _, str in pairs(names) do
 if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service")
 local success, error = pcall(function()
+if not string.match(v.Name, "Gamepass") then
 v:FireServer(LocalPlayer.Character.Head)
 found = true
+end
 end)
 if success then
 remote = v
