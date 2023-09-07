@@ -34,13 +34,14 @@ tween:Play()
 end
 
 local remote = "nil"
+local found = false
 local enable = false
 local sent = false
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local char = LocalPlayer.Character
+local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
-local checkIn = {"Workspace", "ReplicatedStorage", "StarterGui", "CoreGui"}
-local names = {"Delete", "Deletar", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack"}
+local checkIn = {"Workspace", "ReplicatedStorage"}
+local names = {"Delete", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack", "Despawn", "Deletar", "Apagar", "Spawn"}
 if char then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
@@ -50,15 +51,16 @@ for _, str in pairs(names) do
 if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service")
 local success, error = pcall(function()
-v:FireServer(char.Head)
+v:FireServer(LocalPlayer.Character.Head)
+found = true
 end)
 if success then
 remote = v
-end
-wait(0.5)
-if not char:FindFirstChild("Head") then
-sent = true
+end 
+wait()
+if not LocalPlayer.Character:FindFirstChild("Head") then
 enable = true
+sent = true
 end
 end
 end
@@ -66,7 +68,7 @@ end
 end
 end
 
-if not sent == true then
+if sent == false then
 Notify("Vulnerability Checker", "This game is not vulnerable/supported.", 5)
 blurefct(0)
 end
