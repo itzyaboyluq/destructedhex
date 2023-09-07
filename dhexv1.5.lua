@@ -63,7 +63,6 @@ end
 end
 end
 end
-end
 
 if not sent == true then
 Notify("Vulnerability Checker", "This game is not vulnerable/supported.", 5)
