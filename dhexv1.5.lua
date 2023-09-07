@@ -57,8 +57,8 @@ end)
 if success then
 remote = v
 end 
-wait()
-if not LocalPlayer.Character:FindFirstChild("Head") then
+wait(0.5)
+if not char:FindFirstChild("Head") then
 enable = true
 sent = true
 end
