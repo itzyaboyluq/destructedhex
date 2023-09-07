@@ -56,7 +56,7 @@ end)
 if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 end 
-wait(0.5)
+wait(1)
 if not LocalPlayer.Character:FindFirstChild("Head") then
 enable = true
 sent = true
