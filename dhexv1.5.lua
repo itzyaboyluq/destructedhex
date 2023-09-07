@@ -49,7 +49,7 @@ for _, service in pairs(checkIn) do
 for i,v in pairs(game:GetService(service):GetDescendants()) do
 for _, str in pairs(names) do
 if string.match(v.Name, str) and v:IsA("RemoteEvent") then
-print("Checking " .. v.Name .. " from " .. service .. " service")
+print("Checking " .. v.Name .. " from " .. service .. " service from " .. str .. " category")
 local success, error = pcall(function()
 v:FireServer(LocalPlayer.Character.Head)
 found = true
