@@ -40,24 +40,23 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local char = LocalPlayer.Character
 
 local checkIn = {"Workspace", "ReplicatedStorage", "StarterGui", "CoreGui"}
-local names = {"Delete", "Deletar", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack"}
 if char then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
 for _, service in pairs(checkIn) do
 for i,v in pairs(game:GetService(service):GetDescendants()) do
-for _, str in pairs(names) do
-if string.match(v.Name, str) and v:IsA("RemoteEvent") then
+if v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service")
 local success, error = pcall(function()
+if not v:FindFirstChild("__FUNCTION") then
 game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.Head)
+end
 end)
 if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 sent = true
 enable = true
 end 
-end
 end
 end
 end
