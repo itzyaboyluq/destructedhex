@@ -52,11 +52,13 @@ print("Checking " .. v.Name .. " from " .. service .. " service")
 local success, error = pcall(function()
 game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.Head)
 end)
-if not char:FindFirstChild("Head") and success then
+if success then
+if not char:FindFirstChild("Head") then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 sent = true
 enable = true
 end 
+end
 end
 end
 end
