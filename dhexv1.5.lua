@@ -44,7 +44,7 @@ if char then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
 for _, service in pairs(checkIn) do
-for i,v in pairs(game:GetService(service):GetChildren()) do
+for i,v in pairs(game:GetService(service):GetDescendants()) do
 if v:IsA("RemoteEvent") then
 if not v:FindFirstChild("__FUNCTION") then
 print("Checking " .. v.Name .. " from " .. service .. " service")
@@ -53,12 +53,9 @@ game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.He
 end)
 if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
-end 
-wait(0.5)
-if not LocalPlayer.Character:FindFirstChild("Head") then
 sent = true
 enable = true
-end
+end 
 end
 end
 end
