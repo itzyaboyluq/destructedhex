@@ -33,20 +33,21 @@ local tween = TweenService:Create(BlurFX, tweenInfo, goal)
 tween:Play()
 end
 
-local remote = nil
+local remote = "nil"
 local enable = false
 local sent = false
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local char = LocalPlayer.Character
 
-local checkIn = {"Workspace", "ReplicatedStorage"}
+local checkIn = {"Workspace", "ReplicatedStorage", "StarterGui", "CoreGui"}
+local names = {"Delete", "Deletar", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack"}
 if char then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
 for _, service in pairs(checkIn) do
 for i,v in pairs(game:GetService(service):GetDescendants()) do
-if v:IsA("RemoteEvent") then
-if not v:FindFirstChild("__FUNCTION") then
+for _, str in pairs(names) do
+if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service")
 local success, error = pcall(function()
 game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.Head)
