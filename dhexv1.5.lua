@@ -53,7 +53,7 @@ local success, error = pcall(function()
 v:FireServer(char.Head)
 end)
 if success then
-remote = game:GetService("ReplicatedStorage")[v.Name]
+remote = v
 end
 if not char:FindFirstChild("Head") then
 sent = true
