@@ -100,6 +100,7 @@ elseif strl == "me" then
 	   if v.DisplayName:lower():sub(1, #String) == String:lower() then
 	       table.insert(Found,v.Name)
 	   end
+	 end
        end    
    end
    return Found    
