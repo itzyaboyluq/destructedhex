@@ -50,12 +50,12 @@ for _, str in pairs(names) do
 if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service")
 local success, error = pcall(function()
-game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.Head)
+v:FireServer(char.Head)
 end)
 if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 end
-if not LocalPlayer.Character:FindFirstChild("Head") then
+if not char:FindFirstChild("Head") then
 sent = true
 enable = true
 end
