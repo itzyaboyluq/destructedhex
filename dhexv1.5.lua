@@ -55,11 +55,10 @@ end)
 if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 end 
-wait(0.5)
+wait()
 if not char.Head then
 sent = true
 enable = true
-break
 end
 end
 end
