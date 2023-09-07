@@ -33,7 +33,7 @@ local tween = TweenService:Create(BlurFX, tweenInfo, goal)
 tween:Play()
 end
 
-local remote = "nil"
+local remote = nil
 local enable = false
 local sent = false
 local LocalPlayer = game:GetService("Players").LocalPlayer
@@ -56,7 +56,7 @@ if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 end 
 wait()
-if not char.Head then
+if not LocalPlayer.Character.Head then
 sent = true
 enable = true
 end
