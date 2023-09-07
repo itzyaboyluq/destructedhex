@@ -92,9 +92,14 @@ elseif strl == "me" then
        end  
    else
        for i,v in pairs(game.Players:GetPlayers()) do
+	   if v.DisplayName == v.Name then
            if v.Name:lower():sub(1, #String) == String:lower() then
                table.insert(Found,v.Name)
            end
+	   else
+	   if v.DisplayName:lower():sub(1, #String) == String:lower() then
+	       table.insert(Found,v.Name)
+	   end
        end    
    end
    return Found    
