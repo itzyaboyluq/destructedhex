@@ -1,3 +1,5 @@
+local version = "1.5"
+
 local StarterGui = game:GetService("StarterGui")
 local showNotification = true
 
@@ -35,7 +37,7 @@ local remote = "nil"
 local enable = false
 local sent = false
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local char = LocalPlayer.Character
 
 local checkIn = {"Workspace", "ReplicatedStorage", "StarterGui", "CoreGui"}
 local names = {"Delete", "Deletar", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack"}
@@ -52,12 +54,9 @@ game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.He
 end)
 if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
-end 
-repeat wait() until remote
-if not char:FindFirstChild("Head") then
 sent = true
 enable = true
-end
+end 
 end
 end
 end
@@ -65,7 +64,6 @@ end
 end
 
 if not sent == true then
-return
 Notify("Vulnerability Checker", "This game is not vulnerable/supported.", 5)
 blurefct(0)
 end
@@ -162,7 +160,7 @@ text.ClipsDescendants = true
 text.Position = UDim2.new(0, 0, 0.0666668862, 0)
 text.Size = UDim2.new(0, 302, 0, 97)
 text.Font = Enum.Font.SourceSansBold
-text.Text = "Commands: Luq & UI: Luca\nRun admin commands in-game without needing to worry about Filtering Enabled\nUse the internal GUI to execute commands\nStatus: Running"
+text.Text = "Commands: Luq & UI: Luca\nRun admin commands in-game without needing to worry about Filtering Enabled\nUse the internal GUI to execute commands\nVersion: ".. version .. "\nStatus: Running"
 text.TextColor3 = Color3.fromRGB(255, 255, 255)
 text.TextSize = 18.000
 text.TextWrapped = true
