@@ -7,8 +7,6 @@ StarterGui:SetCore("SendNotification", {
 	Title = tl;
 	Text = t;
 	Duration = d;
-	Icon = "http://www.roblox.com/asset/?id=8388262491";
-})
 end
 end
 
