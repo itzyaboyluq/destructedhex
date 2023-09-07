@@ -52,12 +52,15 @@ if not v:FindFirstChild("__FUNCTION") then
 game:GetService("ReplicatedStorage")[v.Name]:FireServer(LocalPlayer.Character.Head)
 end
 end)
-if success and not char:FindFirstChild("Head") then
+if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
-sent = true
-enable = true
 break
 end 
+wait(0.5)
+if not char:FindFirstChild("Head") then
+enable = true
+sent = true
+end
 end
 end
 end
