@@ -54,6 +54,7 @@ if success then
 remote = game:GetService("ReplicatedStorage")[v.Name]
 end 
 repeat wait() until remote
+if not remote == nil then
 sent = true
 enable = true
 end
@@ -61,8 +62,9 @@ end
 end
 end
 end
+end
 
-if remote == nil then
+if not sent == true then
 return
 Notify("Vulnerability Checker", "This game is not vulnerable/supported.", 5)
 blurefct(0)
