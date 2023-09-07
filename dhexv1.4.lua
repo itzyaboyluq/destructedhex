@@ -136,7 +136,7 @@ local ranims = Instance.new("TextButton")
 local ragdoll = Instance.new("TextButton")
 local shutdown = Instance.new("TextButton")
 local punish = Instance.new("TextButton")
-local rchassis = Instance.new("TextButton")
+local rseat = Instance.new("TextButton")
 
 --Properties:
 
@@ -460,15 +460,15 @@ punish.Text = "Punish"
 punish.TextColor3 = Color3.fromRGB(255, 255, 255)
 punish.TextSize = 14.000
 
-rchassis.Name = "rchassis"
-rchassis.Parent = scripts
-rchassis.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
-rchassis.BorderSizePixel = 0
-rchassis.Size = UDim2.new(0, 200, 0, 50)
-rchassis.Font = Enum.Font.Roboto
-rchassis.Text = "Rchassis"
-rchassis.TextColor3 = Color3.fromRGB(255, 255, 255)
-rchassis.TextSize = 14.000
+rseat.Name = "rseat"
+rseat.Parent = scripts
+rseat.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+rseat.BorderSizePixel = 0
+rseat.Size = UDim2.new(0, 200, 0, 50)
+rseat.Font = Enum.Font.Roboto
+rseat.Text = "Rseat"
+rseat.TextColor3 = Color3.fromRGB(255, 255, 255)
+rseat.TextSize = 14.000
 
 local bannedPlayers = {}
 local serverlock = false
@@ -770,9 +770,9 @@ end)
 end
 end)
 
-rchassis.MouseButton1Click:Connect(function()
+rseat.MouseButton1Click:Connect(function()
 for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-if string.match(v.Name, "Chassis") then
+if v:IsA("VehicleSeat") then
 work(v)
 end
 end
