@@ -579,6 +579,7 @@ end
 return Found
 end
 
+if game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents") then
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(messageData)
 for _, adm in pairs(admins) do
 if adm:find(messageData.FromSpeaker) then
@@ -734,7 +735,9 @@ end
 end
 end
 end)
-
+else
+Notify("Destructed Admin", "We couldn't load DAdmin because the game is using the new chat system", 5)
+end
 game:GetService("Players").PlayerAdded:Connect(function(plr)
 for i,v in pairs(bannedPlayers) do
 if plr.Name == v then
