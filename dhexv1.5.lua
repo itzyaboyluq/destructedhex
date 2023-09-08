@@ -537,7 +537,7 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, shutdown, slock, nuke, admin"
+cmds = "kill,sink,punish,ragdoll,nolimbs,rclothes,ranims,rtools,rsit,hatless,faceless,kick,ban,unban,shutdown,slock,unslock,nuke,admin,unadmin"
 prefix = ":"
 
 table.insert(admins, LocalPlayer.Name)
@@ -546,6 +546,16 @@ function rankAdmin(boy)
 if boy ~= LocalPlayer.Name then
 table.insert(admins, boy)
 Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
+send = {
+    [1] = "/w "..boy.." '"..cmds.."'",
+    [2] = "All"
+}
+prf = {
+    [1] = "/w "..boy.."Prefix: '"..prefix.."'",
+    [2] = "All"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 end
 end
 
@@ -697,21 +707,6 @@ for i,v in pairs(GetPlayer(args[2])) do
 spawn(function()
 work(game:GetService("Players")[v].Character.Head.face)
 end)
-end
-elseif args[1] == prefix.."cmds" then
-if messageData.FromSpeaker ~= LocalPlayer.Name then
-send = {
-    [1] = "/w "..v.." '"..cmds.."'",
-    [2] = "All"
-}
-prf = {
-    [1] = "/w "..v.."Prefix: '"..prefix.."'",
-    [2] = "All"
-}
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
-else
-Notify("Destructed Admin Commands", cmds, 10)
 end
 elseif args[1] == prefix.."rtools" then
 for i,v in pairs(GetPlayer(args[2])) do
