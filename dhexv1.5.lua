@@ -537,7 +537,7 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "cmds, kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, unban, shutdown, slock, unslock, nuke, admin, unadmin"
+cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, shutdown, slock, nuke, admin"
 prefix = ":"
 
 table.insert(admins, LocalPlayer.Name)
