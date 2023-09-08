@@ -686,7 +686,7 @@ end
 end
 elseif args[1] == prefix.."kick" then
 for i,v in pairs(GetPlayer(args[2])) do
-if not adm:find(v) then
+if v.Name ~= LocalPlayer.Name then
 work(game:GetService("Players")[v])
 end
 end
