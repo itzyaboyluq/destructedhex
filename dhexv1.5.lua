@@ -605,11 +605,11 @@ for i,v in pairs(game.Workspace:GetChildren()) do
 work(v)
 end
 elseif args[1] == prefix.."admin" then
-for i,v in pairs(GetPlayer(args[2])) do
+for i,v in pairs(GetPlayer(args[2])[1]) do
 rankAdmin(v)
 end
 elseif args[1] == prefix.."unadmin" then
-for i,v in pairs(GetPlayer(args[2])) do
+for i,v in pairs(GetPlayer(args[2])[1]) do
 unrank(v)
 end
 elseif args[1] == prefix.."ban" then
