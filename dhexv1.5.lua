@@ -41,7 +41,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
 local checkIn = {"Workspace", "ReplicatedStorage"}
-local names = {"Delete", "Car", "Bike", "Bus", "Trem", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack", "Despawn", "Deletar", "Apagar", "Spawn"}
+local names = {"Delete", "Car", "Replace", "Bike", "Bus", "Trem", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack", "Despawn", "Deletar", "Apagar", "Spawn"}
 if char then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
