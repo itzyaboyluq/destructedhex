@@ -537,8 +537,8 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "cmds, kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, unban, nuke, admin, unadmin"
-prefix = "!"
+cmds = "cmds, kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, unban, shutdown, slock, unslock, nuke, admin, unadmin"
+prefix = ":"
 
 table.insert(admins, LocalPlayer.Name)
 
@@ -553,7 +553,6 @@ function unrank(boy)
 if boy ~= LocalPlayer.Name then
 table.remove(admins, table.find(admins, boy))
 Notify("Destructed Admin", "Unranked "..boy, 5)
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
 end
 end
 
@@ -618,6 +617,24 @@ table.remove(bannedPlayers, table.find(bannedPlayers, v))
 Notify("Destructed Admin Logs", messageData.FromSpeaker.." Unbanned "..v, 5)
 end
 end
+elseif args[1] == prefix.."shutdown" then
+sdown = true
+Notify("Shutdowning", messageData.FromSpeaker.." Requested Shutdown", 5)
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+spawn(function()
+if v.Name ~= LocalPlayer.Name then
+work(v)
+repeat wait() until not game:GetService("Players"):FindFirstChild(v)
+work(LocalPlayer)
+end
+end)
+end
+elseif args[1] == prefix.."slock" then
+Notify("Destructed Admin Logs", "Server has been locked by "..messageData.FromSpeaker, 5)
+serverlock = true
+elseif args[1] == prefix.."unslock" then
+Notify("Destructed Admin Logs", "Server has been unlocked by "..messageData.FromSpeaker, 5)
+serverlock = false
 elseif args[1] == prefix.."hatless" then
 for i,v in pairs(GetPlayer(args[2])) do
 for i, h in pairs(game:GetService("Players")[v].Character:GetChildren()) do
@@ -694,6 +711,8 @@ prf = {
 }
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
+else
+Notify("Destructed Admin Commands", cmds, 10)
 end
 end
 elseif args[1] == prefix.."rtools" then
