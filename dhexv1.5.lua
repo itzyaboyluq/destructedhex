@@ -1,3 +1,5 @@
+-- join our discord server
+-- https://discord.gg/HjZKVFk2ue
 local version = "1.5"
 
 local StarterGui = game:GetService("StarterGui")
@@ -108,7 +110,7 @@ end
 if enable == true then
 blurefct(0)
 print("Using " .. remote.Name)
-Notify("Destructed Hex", "Admin & Commands loaded.", 5)
+Notify("Destructed Hex", "discord.gg/HjZKVFk2ue", 5)
 local destruct = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
