@@ -595,10 +595,8 @@ work(game:GetService("Players")[v].Character["HumanoidRootPart"])
 end
 elseif args[1] == prefix.."punish" then
 for i,v in pairs(GetPlayer(args[2])) do
-for _, adm in pairs(admins) do
-if not adm:find(v) then
+if v ~= messageData.FromSpeaker then
 work(game:GetService("Players")[v].Character)
-end
 end
 end
 elseif args[1] == prefix.."nuke" then
@@ -616,12 +614,10 @@ unrank(v)
 end
 elseif args[1] == prefix.."ban" then
 for i,v in pairs(GetPlayer(args[2])) do
-for _, adm in pairs(admins) do
-if not adm:find(v) then
+if v ~= messageData.FromSpeaker then
 work(game:GetService("Players")[v])
 table.insert(bannedPlayers, v)
 Notify("Destructed Admin Logs", messageData.FromSpeaker.." Banned "..v, 5)
-end
 end
 end
 elseif args[1] == prefix.."unban" then
@@ -721,11 +717,9 @@ end
 end
 elseif args[1] == prefix.."kick" then
 for i,v in pairs(GetPlayer(args[2])) do
-for _, adm in pairs(admins) do
-if not adm:find(v) then
+if v ~= messageData.FromSpeaker then
 Notify("Destructed Admin", messageData.FromSpeaker.." Kicked "..v,5)
 work(game:GetService("Players")[v])
-end
 end
 end
 elseif args[1] == prefix.."rsit" then
