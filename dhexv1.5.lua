@@ -537,7 +537,7 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "kill,sink,punish,ragdoll,nolimbs,rclothes,ranims,rtools,rsit,hatless,faceless,kick,ban,unban,shutdown,slock,unslock,nuke,admin,unadmin"
+cmds = "kill|sink|punish|ragdoll|nolimbs|rclothes|ranims|rtools|rsit|hatless|faceless|kick|ban|unban|shutdown|slock|unslock|nuke|admin|unadmin"
 prefix = ":"
 
 table.insert(admins, LocalPlayer.Name)
@@ -551,7 +551,7 @@ send = {
     [2] = "All"
 }
 prf = {
-    [1] = "/w "..boy.."Prefix: '"..prefix.."'",
+    [1] = "/w "..boy.." Prefix: '"..prefix.."'",
     [2] = "All"
 }
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
