@@ -699,7 +699,6 @@ work(game:GetService("Players")[v].Character.Head.face)
 end)
 end
 elseif args[1] == prefix.."cmds" then
-for i,v in pairs(GetPlayer(args[2])) do
 if v.Name ~= LocalPlayer.Name then
 send = {
     [1] = "/w "..v.." '"..cmds.."'",
@@ -713,7 +712,6 @@ game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 else
 Notify("Destructed Admin Commands", cmds, 10)
-end
 end
 elseif args[1] == prefix.."rtools" then
 for i,v in pairs(GetPlayer(args[2])) do
