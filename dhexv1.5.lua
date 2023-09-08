@@ -41,7 +41,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
 local checkIn = {"Workspace", "ReplicatedStorage"}
-local names = {"Delete", "Car", "Replace", "Bike", "Bus", "Trem", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack", "Despawn", "Deletar", "Apagar", "Spawn"}
+local names = {"Delete", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack", "Despawn", "Deletar", "Apagar"}
 if char then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
@@ -108,7 +108,7 @@ end
 if enable == true then
 blurefct(0)
 print("Using " .. remote.Name)
-Notify("Destructed Hex", "Commands & GUI loaded.", 5)
+Notify("Destructed Hex", "Admin & Commands loaded.", 5)
 local destruct = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
@@ -139,6 +139,8 @@ local ragdoll = Instance.new("TextButton")
 local shutdown = Instance.new("TextButton")
 local punish = Instance.new("TextButton")
 local rseat = Instance.new("TextButton")
+local admin = Instance.new("TextButton")
+local unadmin = Instance.new("TextButton")
 local dstc = Instance.new("ScreenGui")
 local note = Instance.new("Frame")
 local text = Instance.new("TextLabel")
@@ -310,7 +312,7 @@ unban.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 unban.BorderSizePixel = 0
 unban.Size = UDim2.new(0, 200, 0, 50)
 unban.Font = Enum.Font.Roboto
-unban.Text = "UnBan"
+unban.Text = "Unban"
 unban.TextColor3 = Color3.fromRGB(255, 255, 255)
 unban.TextSize = 14.000
 
@@ -340,7 +342,7 @@ unview.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 unview.BorderSizePixel = 0
 unview.Size = UDim2.new(0, 200, 0, 50)
 unview.Font = Enum.Font.Roboto
-unview.Text = "UnView"
+unview.Text = "Unview"
 unview.TextColor3 = Color3.fromRGB(255, 255, 255)
 unview.TextSize = 14.000
 
@@ -500,6 +502,26 @@ punish.Text = "Punish"
 punish.TextColor3 = Color3.fromRGB(255, 255, 255)
 punish.TextSize = 14.000
 
+admin.Name = "admin"
+admin.Parent = scripts
+admin.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+admin.BorderSizePixel = 0
+admin.Size = UDim2.new(0, 200, 0, 50)
+admin.Font = Enum.Font.Roboto
+admin.Text = "Admin"
+admin.TextColor3 = Color3.fromRGB(255, 255, 255)
+admin.TextSize = 14.000
+
+unadmin.Name = "unadmin"
+unadmin.Parent = scripts
+unadmin.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+unadmin.BorderSizePixel = 0
+unadmin.Size = UDim2.new(0, 200, 0, 50)
+unadmin.Font = Enum.Font.Roboto
+unadmin.Text = "Unadmin"
+unadmin.TextColor3 = Color3.fromRGB(255, 255, 255)
+unadmin.TextSize = 14.000
+
 rseat.Name = "rseat"
 rseat.Parent = scripts
 rseat.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
@@ -511,9 +533,163 @@ rseat.TextColor3 = Color3.fromRGB(255, 255, 255)
 rseat.TextSize = 14.000
 
 local bannedPlayers = {}
+local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
+cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, admin, unadmin"
+prefix = ":"
+
+table.insert(admins, LocalPlayer.Name)
+
+function rankAdmin(boy)
+if boy.Name ~= LocalPlayer.Name then
+table.insert(admins, boy)
+args = {
+    [1] = "/w "..boy.." You have been ranked to Admin",
+    [2] = "All"
+}
+args2 = {
+    [1] = "/w "..boy.." Prefix: '"..prefix.."'",
+    [2] = "All"
+}
+args3 = {
+    [1] = "/w "..boy.." Commands: '"..cmds.."'",
+    [2] = "All"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args2))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args3))
+end
+end
+
+function unrank(boy)
+if boy.Name ~= LocalPlayer.Name then
+table.remove(admins, table.find(admins, boy))
+args = {
+    [1] = "/w "..boy.." You have been unranked",
+    [2] = "All"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
+end
+end
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(messageData)
+for _, adm in pairs(admins) do
+if adm:find(messageData.FromSpeaker) then
+args = string.split(messageData.Message, " ")
+if args[1] == prefix.."kill" then
+for i,v in pairs(GetPlayer(args[2])) do
+if game:GetService("Players")[v].Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+work(game:GetService("Players")[v].Character.Torso.Neck)
+else
+work(game:GetService("Players")[v].Character.Head.Neck)
+end
+end
+elseif args[1] == prefix.."sink" then
+for i,v in pairs(GetPlayer(args[2])) do
+work(game:GetService("Players")[v].Character["HumanoidRootPart"])
+end
+elseif args[1] == prefix.."punish" then
+for i,v in pairs(GetPlayer(args[2])) do
+if v.Name ~= LocalPlayer.Name then
+work(game:GetService("Players")[v].Character)
+end
+end
+elseif args[1] == prefix.."admin" then
+for i,v in pairs(GetPlayer(args[2])) do
+rankAdmin(v)
+end
+elseif args[1] == prefix.."unadmin" then
+for i,v in pairs(GetPlayer(args[2])) do
+unrank(v)
+end
+elseif args[1] == prefix.."hatless" then
+for i,v in pairs(GetPlayer(args[2])) do
+for i, h in pairs(game:GetService("Players")[v].Character:GetChildren()) do
+if h:IsA("Accessory") then
+work(h)
+end
+end
+end
+elseif args[1] == prefix.."ragdoll" then
+for i,v in pairs(GetPlayer(args[2])) do
+if v.Name ~= LocalPlayer.Name then
+work(game:GetService("Players")[v]:FindFirstChild("Humanoid"))
+end
+end
+elseif args[1] == prefix.."nolimbs" then
+for i,v in pairs(GetPlayer(args[2])) do
+spawn(function()
+if game:GetService("Players")[v].Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+names = {"Left Arm", "Right Arm", "Left Leg", "Right Leg"}
+for _, str in pairs(names) do
+work(game:GetService("Players")[v].Character[str])
+end
+else
+names = {"LeftUpperArm", "RightUpperArm", "LeftUpperLeg", "RightUpperLeg"}
+for _, str in pairs(names) do
+work(game:GetService("Players")[v].Character[str])
+end
+end
+end)
+end
+elseif args[1] == prefix.."rclothes" then
+for i,v in pairs(GetPlayer(args[2])) do
+if game:GetService("Players")[v].Character:FindFirstChildOfClass("Shirt") then
+spawn(function()
+work(game:GetService("Players")[v].Character:FindFirstChildOfClass("Shirt"))
+end)
+end
+if game:GetService("Players")[v].Character:FindFirstChildOfClass("Pants") then
+spawn(function()
+work(game:GetService("Players")[v].Character:FindFirstChildOfClass("Pants"))
+end)
+end
+if game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic") then
+spawn(function()
+work(game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic"))
+end)
+end
+end
+elseif args[1] == prefix.."ranims" then
+for i,v in pairs(GetPlayer(args[2])) do
+if game:GetService("Players")[v].Character:FindFirstChild("Humanoid") then
+work(game:GetService("Players")[v].Character.Humanoid:FindFirstChild("Animator"))
+end
+end
+elseif args[1] == prefix.."faceless" then
+for i,v in pairs(GetPlayer(args[2])) do
+spawn(function()
+work(game:GetService("Players")[v].Character.Head.face)
+end)
+end
+elseif args[1] == prefix.."rtools" then
+for i,v in pairs(GetPlayer(args[2])) do
+backpack = game:GetService("Players")[v]["Backpack"] or game:GetService("Players")[v]:WaitForChild("Backpack")
+for i,t in pairs(backpack:GetChildren()) do
+if t:IsA("BackpackItem") and t:FindFirstChild("Handle") then
+work(t)
+end
+end
+end
+elseif args[1] == prefix.."kick" then
+for i,v in pairs(GetPlayer(args[2])) do
+if v.Name ~= LocalPlayer.Name then
+work(game:GetService("Players")[v])
+end
+end
+elseif args[1] == prefix.."rsit" then
+for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+if v:IsA("VehicleSeat") or v:IsA("Seat") then
+work(v)
+end
+end
+end
+end
+end
+end)
 
 function GetBannedPlayer(target)
 local Found = {}
@@ -706,8 +882,7 @@ end)
 faceless.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
 spawn(function()
-destructwashere = game:GetService("Players")[v].Character.Head.face
-work(destructwashere)
+work(game:GetService("Players")[v].Character.Head.face)
 end)
 end
 end)
@@ -728,6 +903,18 @@ spawn(function()
 e = game:GetService("Players")[v].Character:FindFirstChild("Humanoid")
 work(e)
 end)
+end
+end)
+
+admin.MouseButton1Click:Connect(function()
+for i,v in pairs(GetPlayer(player.Text)) do
+rankAdmin(v)
+end
+end)
+
+unadmin.MouseButton1Click:Connect(function()
+for i,v in pairs(GetPlayer(player.Text)) do
+unrank(v)
 end
 end)
 
@@ -812,7 +999,7 @@ end)
 
 rseat.MouseButton1Click:Connect(function()
 for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-if v:IsA("VehicleSeat") then
+if v:IsA("VehicleSeat") or v:IsA("Seat") then
 work(v)
 end
 end
