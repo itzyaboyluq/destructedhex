@@ -699,7 +699,7 @@ work(game:GetService("Players")[v].Character.Head.face)
 end)
 end
 elseif args[1] == prefix.."cmds" then
-if v.Name ~= LocalPlayer.Name then
+if messageData.FromSpeaker ~= LocalPlayer.Name then
 send = {
     [1] = "/w "..v.." '"..cmds.."'",
     [2] = "All"
