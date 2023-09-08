@@ -606,7 +606,7 @@ end
 elseif args[1] == prefix.."ban" then
 for i,v in pairs(GetPlayer(args[2])) do
 if v ~= LocalPlayer.Name then
-work(v)
+work(game:GetService("Players")[v])
 table.insert(bannedPlayers, v)
 Notify("Destructed Admin Logs", messageData.FromSpeaker.." Banned "..v, 5)
 end
