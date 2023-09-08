@@ -537,8 +537,8 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "cmds, kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, admin, unadmin"
-prefix = ":"
+cmds = "cmds, kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, unban, nuke, admin, unadmin"
+prefix = "!"
 
 table.insert(admins, LocalPlayer.Name)
 
@@ -555,6 +555,17 @@ table.remove(admins, table.find(admins, boy))
 Notify("Destructed Admin", "Unranked "..boy, 5)
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
 end
+end
+
+function GetBannedPlayer(target)
+local Found = {}
+for _, str in pairs(bannedPlayers) do
+if str:find(target) then
+table.insert(Found, str)
+break
+end
+end
+return Found
 end
 
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(messageData)
@@ -575,9 +586,14 @@ work(game:GetService("Players")[v].Character["HumanoidRootPart"])
 end
 elseif args[1] == prefix.."punish" then
 for i,v in pairs(GetPlayer(args[2])) do
-if v.Name ~= LocalPlayer.Name then
+if v ~= LocalPlayer.Name then
 work(game:GetService("Players")[v].Character)
 end
+end
+elseif args[1] == prefix.."nuke" then
+Notify("Destructed Admin Logs", messageData.FromSpeaker.." Nuked the map", 5)
+for i,v in pairs(game.Workspace:GetChildren()) do
+work(v)
 end
 elseif args[1] == prefix.."admin" then
 for i,v in pairs(GetPlayer(args[2])) do
@@ -586,6 +602,21 @@ end
 elseif args[1] == prefix.."unadmin" then
 for i,v in pairs(GetPlayer(args[2])) do
 unrank(v)
+end
+elseif args[1] == prefix.."ban" then
+for i,v in pairs(GetPlayer(args[2])) do
+if v ~= LocalPlayer.Name then
+work(v)
+table.insert(bannedPlayers, v)
+Notify("Destructed Admin Logs", messageData.FromSpeaker.." Banned "..v, 5)
+end
+end
+elseif args[1] == prefix.."unban" then
+for i,v in pairs(GetBannedPlayer(args[2])) do
+if v ~= LocalPlayer.Name then
+table.remove(bannedPlayers, table.find(bannedPlayers, v))
+Notify("Destructed Admin Logs", messageData.FromSpeaker.." Unbanned "..v, 5)
+end
 end
 elseif args[1] == prefix.."hatless" then
 for i,v in pairs(GetPlayer(args[2])) do
@@ -657,7 +688,12 @@ send = {
     [1] = "/w "..v.." '"..cmds.."'",
     [2] = "All"
 }
+prf = {
+    [1] = "/w "..v.."Prefix: '"..prefix.."'",
+    [2] = "All"
+}
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 end
 end
 elseif args[1] == prefix.."rtools" then
@@ -686,17 +722,6 @@ end
 end
 end
 end)
-
-function GetBannedPlayer(target)
-local Found = {}
-for _, str in pairs(bannedPlayers) do
-if str:find(target) then
-table.insert(Found, str)
-break
-end
-end
-return Found
-end
 
 game:GetService("Players").PlayerAdded:Connect(function(plr)
 for i,v in pairs(bannedPlayers) do
