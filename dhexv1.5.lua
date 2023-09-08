@@ -537,7 +537,7 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, admin, unadmin"
+cmds = "cmds, kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, admin, unadmin"
 prefix = ":"
 
 table.insert(admins, LocalPlayer.Name)
@@ -554,7 +554,7 @@ args2 = {
     [2] = "All"
 }
 args3 = {
-    [1] = "/w "..boy.." Commands: '"..cmds.."'",
+    [1] = "/w "..boy.." Type "..prefix.."cmds for commands",
     [2] = "All"
 }
 
@@ -665,6 +665,16 @@ spawn(function()
 work(game:GetService("Players")[v].Character.Head.face)
 end)
 end
+elseif args[1] == prefix.."cmds" then
+for i,v in pairs(GetPlayer(args[2])) do
+if v.Name ~= LocalPlayer.Name then
+send = {
+    [1] = "/w "..v.." '"..cmds.."'",
+    [2] = "All"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
+end
+end
 elseif args[1] == prefix.."rtools" then
 for i,v in pairs(GetPlayer(args[2])) do
 backpack = game:GetService("Players")[v]["Backpack"] or game:GetService("Players")[v]:WaitForChild("Backpack")
@@ -676,7 +686,7 @@ end
 end
 elseif args[1] == prefix.."kick" then
 for i,v in pairs(GetPlayer(args[2])) do
-if v.Name ~= LocalPlayer.Name then
+if not adm:find(v) then
 work(game:GetService("Players")[v])
 end
 end
