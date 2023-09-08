@@ -543,34 +543,16 @@ prefix = ":"
 table.insert(admins, LocalPlayer.Name)
 
 function rankAdmin(boy)
-if boy.Name ~= LocalPlayer.Name then
+if boy ~= LocalPlayer.Name then
 table.insert(admins, boy)
-args = {
-    [1] = "/w "..boy.." You have been ranked to Admin",
-    [2] = "All"
-}
-args2 = {
-    [1] = "/w "..boy.." Prefix: '"..prefix.."'",
-    [2] = "All"
-}
-args3 = {
-    [1] = "/w "..boy.." Type "..prefix.."cmds for commands",
-    [2] = "All"
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args2))
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args3))
+Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
 end
 end
 
 function unrank(boy)
-if boy.Name ~= LocalPlayer.Name then
+if boy ~= LocalPlayer.Name then
 table.remove(admins, table.find(admins, boy))
-args = {
-    [1] = "/w "..boy.." You have been unranked",
-    [2] = "All"
-}
+Notify("Destructed Admin", "Unranked "..boy, 5)
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
 end
 end
@@ -615,8 +597,11 @@ end
 end
 elseif args[1] == prefix.."ragdoll" then
 for i,v in pairs(GetPlayer(args[2])) do
-if v.Name ~= LocalPlayer.Name then
-work(game:GetService("Players")[v]:FindFirstChild("Humanoid"))
+if v ~= LocalPlayer.Name then
+spawn(function()
+e = game:GetService("Players")[v].Character:FindFirstChild("Humanoid")
+work(e)
+end)
 end
 end
 elseif args[1] == prefix.."nolimbs" then
@@ -686,7 +671,8 @@ end
 end
 elseif args[1] == prefix.."kick" then
 for i,v in pairs(GetPlayer(args[2])) do
-if v.Name ~= LocalPlayer.Name then
+if v ~= LocalPlayer.Name then
+Notify("Destructed Admin", messageData.FromSpeaker.." Kicked "..v,5)
 work(game:GetService("Players")[v])
 end
 end
@@ -855,7 +841,7 @@ end)
 ban.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
 spawn(function()
-if not table.find(bannedPlayers, v.Name) then
+if not table.find(bannedPlayers, v) then
 plr = game:GetService("Players")[v]
 table.insert(bannedPlayers, plr.Name)
 Notify("Banned", plr.Name .. " Will not be able to join the server", 5)
