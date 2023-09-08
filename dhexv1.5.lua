@@ -537,7 +537,7 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "kill|sink|punish|ragdoll|nolimbs|rclothes|ranims|rtools|rsit|hatless|faceless|kick|ban|unban|shutdown|slock|unslock|nuke|admin|unadmin"
+cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, unban, shutdown, slock, unslock, nuke, admin"
 prefix = ":"
 
 table.insert(admins, LocalPlayer.Name)
@@ -547,7 +547,7 @@ if boy ~= LocalPlayer.Name then
 table.insert(admins, boy)
 Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
 send = {
-    [1] = "/w "..boy.." '"..cmds.."'",
+    [1] = "/w "..boy.." "..cmds.."",
     [2] = "All"
 }
 prf = {
