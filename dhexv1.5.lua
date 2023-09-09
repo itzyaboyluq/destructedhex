@@ -575,15 +575,20 @@ end
 function rankAll()
 Notify("Destructed Admin", "Everyone can now use Admin Commands", 5)
 one = {
-    [1] = cmds,
+    [1] = "Ranked all players as an Admin",
     [2] = "All"
 }
 two = {
+    [1] = "Commands: "..cmds,
+    [2] = "All"
+}
+three = {
     [1] = "Prefix: '"..prefix.."'",
     [2] = "All"
 }
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(one))
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(two))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(three))		
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 spawn(function()
 if not table.find(admins, v.Name) then
@@ -983,14 +988,22 @@ end
 end)
 
 admin.MouseButton1Click:Connect(function()
-for i,v in pairs(GetPlayer(player.Text)) do
+if player.Text == "all" or player.Text == "others" then
+rankAll()
+else
+for i,v in pairs(GetAPlayer(player.Text)) do
+if not table.find(admins, v) then
 rankAdmin(v)
+end
+end
 end
 end)
 
 unadmin.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
+if table.find(admins, v.Name) then
 unrank(v)
+end
 end
 end)
 
