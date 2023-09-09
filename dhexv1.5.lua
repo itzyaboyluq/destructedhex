@@ -573,7 +573,7 @@ end
 end
 
 function rankAll()
-Notify("Destructed Admin", "Ranked everyone as an Admin", 5)
+Notify("Destructed Admin", "Everyone can now use Admin Commands", 5)
 one = {
     [1] = cmds,
     [2] = "All"
@@ -586,7 +586,9 @@ game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(two))
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 spawn(function()
+if not table.find(admins, v.Name) then
 table.insert(admins, v.Name)
+end
 end)
 end
 end
@@ -638,7 +640,7 @@ for i,v in pairs(game.Workspace:GetChildren()) do
 work(v)
 end
 elseif args[1] == prefix.."admin" then
-if args[2] == "all" then
+if args[2] == "all" or args[2] == "others" then
 rankAll()
 else
 for i,v in pairs(GetAPlayer(args[2])) do
