@@ -542,6 +542,33 @@ local cam = workspace.CurrentCamera
 cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, unban, shutdown, slock, unslock, nuke, admin"
 prefix = ":"
 
+function GetAPlayer(String)
+   local Found = {}
+   local strl = String:lower()
+   if strl == "all" then
+       rankAdmin("all")
+   elseif strl == "others" then
+       for i,v in pairs(game.Players:GetPlayers()) do
+           if v.Name ~= game.Players.LocalPlayer.Name then
+               table.insert(Found,v.Name)
+           end
+       end  
+elseif strl == "me" then
+       for i,v in pairs(game.Players:GetPlayers()) do
+           if v.Name == game.Players.LocalPlayer.Name then
+               table.insert(Found,v.Name)
+           end
+       end  
+   else
+       for i,v in pairs(game.Players:GetPlayers()) do
+           if v.Name:lower():sub(1, #String) == String:lower() then
+               table.insert(Found,v.Name)
+           end
+       end    
+   end
+   return Found    
+end
+
 table.insert(admins, LocalPlayer.Name)
 
 function rankAdmin(boy)
@@ -558,6 +585,22 @@ prf = {
 }
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
+if boy == "all" then
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+table.insert(admins, v)
+Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
+send = {
+    [1] = cmds,
+    [2] = "All"
+}
+prf = {
+    [1] = "Prefix: '"..prefix.."'",
+    [2] = "All"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
+end
+end
 end
 end
 
@@ -608,12 +651,16 @@ for i,v in pairs(game.Workspace:GetChildren()) do
 work(v)
 end
 elseif args[1] == prefix.."admin" then
-for i,v in pairs(GetPlayer(args[2])) do
+for i,v in pairs(GetAPlayer(args[2])) do
+if not table.find(admins, v) then
 rankAdmin(v)
+end
 end
 elseif args[1] == prefix.."unadmin" then
 for i,v in pairs(GetPlayer(args[2])) do
+if table.find(admins, v) then
 unrank(v)
+end
 end
 elseif args[1] == prefix.."ban" then
 for i,v in pairs(GetPlayer(args[2])) do
