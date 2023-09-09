@@ -635,11 +635,12 @@ for i,v in pairs(game.Workspace:GetChildren()) do
 work(v)
 end
 elseif args[1] == prefix.."admin" then
+if args[2] == "all" then
+rankAdmin("all")
+else
 for i,v in pairs(GetAPlayer(args[2])) do
 if not table.find(admins, v) then
 rankAdmin(v)
-if args[2] == "all" then
-rankAdmin("all")
 end
 end
 end
