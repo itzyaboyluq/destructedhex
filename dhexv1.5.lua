@@ -584,8 +584,10 @@ two = {
 }
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(one))
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(two))
-for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+spawn(function()
 table.insert(admins, v.Name)
+end)
 end
 end
 	
