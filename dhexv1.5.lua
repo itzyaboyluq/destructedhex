@@ -571,7 +571,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 if boy == "all" then
 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-table.insert(admins, v)
+table.insert(admins, v.Name)
 Notify("Destructed Admin", "Ranked everyone as an Admin", 5)
 send = {
     [1] = cmds,
