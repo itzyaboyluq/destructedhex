@@ -556,22 +556,6 @@ end
 table.insert(admins, LocalPlayer.Name)
 
 function rankAdmin(boy)
-if boy == "ev1" then
-Notify("Destructed Admin", "Ranked everyone as an Admin", 5)
-one = {
-    [1] = cmds,
-    [2] = "All"
-}
-two = {
-    [1] = "Prefix: '"..prefix.."'",
-    [2] = "All"
-}
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(one))
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(two))
-for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-table.insert(admins, v.Name)
-end
-else
 if boy ~= LocalPlayer.Name then
 table.insert(admins, boy)
 Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
@@ -587,8 +571,24 @@ game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 end
 end
-end
 
+function rankAll()
+Notify("Destructed Admin", "Ranked everyone as an Admin", 5)
+one = {
+    [1] = cmds,
+    [2] = "All"
+}
+two = {
+    [1] = "Prefix: '"..prefix.."'",
+    [2] = "All"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(one))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(two))
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+table.insert(admins, v.Name)
+end
+end
+	
 function unrank(boy)
 if boy ~= LocalPlayer.Name then
 table.remove(admins, table.find(admins, boy))
@@ -637,7 +637,7 @@ work(v)
 end
 elseif args[1] == prefix.."admin" then
 if args[2] == "all" then
-rankAdmin("ev1")
+rankAll()
 else
 for i,v in pairs(GetAPlayer(args[2])) do
 if not table.find(admins, v) then
