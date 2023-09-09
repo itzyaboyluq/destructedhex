@@ -545,26 +545,10 @@ prefix = ":"
 function GetAPlayer(String)
    local Found = {}
    local strl = String:lower()
-   if strl == "all" then
-       rankAdmin("all")
-   elseif strl == "others" then
-       for i,v in pairs(game.Players:GetPlayers()) do
-           if v.Name ~= game.Players.LocalPlayer.Name then
+   for i,v in pairs(game.Players:GetPlayers()) do
+   if v.Name:lower():sub(1, #String) == String:lower() then
                table.insert(Found,v.Name)
-           end
-       end  
-elseif strl == "me" then
-       for i,v in pairs(game.Players:GetPlayers()) do
-           if v.Name == game.Players.LocalPlayer.Name then
-               table.insert(Found,v.Name)
-           end
-       end  
-   else
-       for i,v in pairs(game.Players:GetPlayers()) do
-           if v.Name:lower():sub(1, #String) == String:lower() then
-               table.insert(Found,v.Name)
-           end
-       end    
+   end 
    end
    return Found    
 end
@@ -654,6 +638,9 @@ elseif args[1] == prefix.."admin" then
 for i,v in pairs(GetAPlayer(args[2])) do
 if not table.find(admins, v) then
 rankAdmin(v)
+if args[2] == "all" then
+rankAdmin(all)
+end
 end
 end
 elseif args[1] == prefix.."unadmin" then
