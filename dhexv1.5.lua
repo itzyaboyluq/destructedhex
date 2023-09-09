@@ -572,7 +572,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 if boy == "all" then
 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 table.insert(admins, v)
-Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
+Notify("Destructed Admin", "Ranked everyone as an Admin", 5)
 send = {
     [1] = cmds,
     [2] = "All"
@@ -639,7 +639,7 @@ for i,v in pairs(GetAPlayer(args[2])) do
 if not table.find(admins, v) then
 rankAdmin(v)
 if args[2] == "all" then
-rankAdmin(all)
+rankAdmin("all")
 end
 end
 end
