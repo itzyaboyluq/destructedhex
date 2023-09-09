@@ -1001,7 +1001,7 @@ end)
 
 unadmin.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-if table.find(admins, v.Name) then
+if table.find(admins, v) then
 unrank(v)
 end
 end
