@@ -556,7 +556,7 @@ end
 table.insert(admins, LocalPlayer.Name)
 
 function rankAdmin(boy)
-if boy == "all" then
+if boy == "ev1" then
 Notify("Destructed Admin", "Ranked everyone as an Admin", 5)
 one = {
     [1] = cmds,
@@ -637,7 +637,7 @@ work(v)
 end
 elseif args[1] == prefix.."admin" then
 if args[2] == "all" then
-rankAdmin("all")
+rankAdmin("ev1")
 else
 for i,v in pairs(GetAPlayer(args[2])) do
 if not table.find(admins, v) then
