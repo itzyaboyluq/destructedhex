@@ -557,19 +557,19 @@ table.insert(admins, LocalPlayer.Name)
 
 function rankAdmin(boy)
 if boy == "all" then
-for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-table.insert(admins, v.Name)
 Notify("Destructed Admin", "Ranked everyone as an Admin", 5)
-send = {
+one = {
     [1] = cmds,
     [2] = "All"
 }
-prf = {
+two = {
     [1] = "Prefix: '"..prefix.."'",
     [2] = "All"
 }
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(one))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(two))
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+table.insert(admins, v.Name)
 end
 else
 if boy ~= LocalPlayer.Name then
