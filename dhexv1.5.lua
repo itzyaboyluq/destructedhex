@@ -556,19 +556,6 @@ end
 table.insert(admins, LocalPlayer.Name)
 
 function rankAdmin(boy)
-if boy ~= LocalPlayer.Name then
-table.insert(admins, boy)
-Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
-send = {
-    [1] = "/w "..boy.." "..cmds.."",
-    [2] = "All"
-}
-prf = {
-    [1] = "/w "..boy.." Prefix: '"..prefix.."'",
-    [2] = "All"
-}
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 if boy == "all" then
 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 table.insert(admins, v.Name)
@@ -584,6 +571,20 @@ prf = {
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 end
+else
+if boy ~= LocalPlayer.Name then
+table.insert(admins, boy)
+Notify("Destructed Admin", "Ranked "..boy.." as an Admin", 5)
+send = {
+    [1] = "/w "..boy.." "..cmds.."",
+    [2] = "All"
+}
+prf = {
+    [1] = "/w "..boy.." Prefix: '"..prefix.."'",
+    [2] = "All"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(send))
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(prf))
 end
 end
 end
