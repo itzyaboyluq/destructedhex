@@ -354,7 +354,7 @@ btools.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 btools.BorderSizePixel = 0
 btools.Size = UDim2.new(0, 200, 0, 50)
 btools.Font = Enum.Font.Roboto
-btools.Text = "BTools"
+btools.Text = "Btools"
 btools.TextColor3 = Color3.fromRGB(255, 255, 255)
 btools.TextSize = 14.000
 
@@ -394,7 +394,7 @@ nolimbs.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 nolimbs.BorderSizePixel = 0
 nolimbs.Size = UDim2.new(0, 200, 0, 50)
 nolimbs.Font = Enum.Font.Roboto
-nolimbs.Text = "NoLimbs"
+nolimbs.Text = "Nolimbs"
 nolimbs.TextColor3 = Color3.fromRGB(255, 255, 255)
 nolimbs.TextSize = 14.000
 
