@@ -272,7 +272,7 @@ scripts.BackgroundTransparency = 1
 scripts.BorderSizePixel = 0
 scripts.Position = UDim2.new(0, 0, 0.134782612, 0)
 scripts.Size = UDim2.new(0, 325, 0, 173)
-scripts.CanvasSize = UDim2.new(0, 0, 1.200, 0)
+scripts.CanvasSize = UDim2.new(0, 0, 1.190, 0)
 
 UIGridLayout.Parent = scripts
 UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
