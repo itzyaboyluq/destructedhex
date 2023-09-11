@@ -44,7 +44,7 @@ local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
 local checkIn = {"Workspace", "ReplicatedStorage"}
 local names = {"Delete", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack", "Despawn", "Deletar", "Apagar"}
-if char.Head then
+if char then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
 for _, service in pairs(checkIn) do
@@ -59,7 +59,7 @@ end)
 if success then
 remote = v
 end 
-wait(1)
+wait(0.5)
 if not char:FindFirstChild("Head") then
 enable = true
 sent = true
@@ -272,7 +272,7 @@ scripts.BackgroundTransparency = 1
 scripts.BorderSizePixel = 0
 scripts.Position = UDim2.new(0, 0, 0.134782612, 0)
 scripts.Size = UDim2.new(0, 325, 0, 173)
-scripts.CanvasSize = UDim2.new(0, 0, 1.190, 0)
+scripts.CanvasSize = UDim2.new(0, 0, 1.185, 0)
 
 UIGridLayout.Parent = scripts
 UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -677,7 +677,7 @@ elseif args[1] == prefix.."shutdown" then
 sdown = true
 Notify("Shutdowning", messageData.FromSpeaker.." Requested Shutdown", 5)
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-spawn(function()
+task.spawn(function()
 if v.Name ~= LocalPlayer.Name then
 work(v)
 repeat wait() until not game:GetService("Players"):FindFirstChild(v)
@@ -702,7 +702,7 @@ end
 elseif args[1] == prefix.."ragdoll" then
 for i,v in pairs(GetPlayer(args[2])) do
 if v ~= LocalPlayer.Name then
-spawn(function()
+task.spawn(function()
 e = game:GetService("Players")[v].Character:FindFirstChild("Humanoid")
 work(e)
 end)
@@ -710,7 +710,7 @@ end
 end
 elseif args[1] == prefix.."nolimbs" then
 for i,v in pairs(GetPlayer(args[2])) do
-spawn(function()
+task.spawn(function()
 if game:GetService("Players")[v].Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
 names = {"Left Arm", "Right Arm", "Left Leg", "Right Leg"}
 for _, str in pairs(names) do
@@ -727,17 +727,17 @@ end
 elseif args[1] == prefix.."rclothes" then
 for i,v in pairs(GetPlayer(args[2])) do
 if game:GetService("Players")[v].Character:FindFirstChildOfClass("Shirt") then
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChildOfClass("Shirt"))
 end)
 end
 if game:GetService("Players")[v].Character:FindFirstChildOfClass("Pants") then
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChildOfClass("Pants"))
 end)
 end
 if game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic") then
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic"))
 end)
 end
@@ -750,7 +750,7 @@ end
 end
 elseif args[1] == prefix.."faceless" then
 for i,v in pairs(GetPlayer(args[2])) do
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character.Head.face)
 end)
 end
@@ -852,7 +852,7 @@ end)
 
 kill.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-            spawn(function()
+            task.spawn(function()
             if game:GetService("Players")[v].Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
             work(game:GetService("Players")[v].Character.Torso.Neck)
             else
@@ -865,17 +865,17 @@ end)
 naked.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
 if game:GetService("Players")[v].Character:FindFirstChildOfClass("Shirt") then
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChildOfClass("Shirt"))
 end)
 end
 if game:GetService("Players")[v].Character:FindFirstChildOfClass("Pants") then
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChildOfClass("Pants"))
 end)
 end
 if game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic") then
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChild("Shirt Graphic"))
 end)
 end
@@ -892,7 +892,7 @@ end)
 
 nolimbs.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 if game:GetService("Players")[v].Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
 names = {"Left Arm", "Right Arm", "Left Leg", "Right Leg"}
 for _, str in pairs(names) do
@@ -910,7 +910,7 @@ end)
 
 kick.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v])
 end)
 end
@@ -925,7 +925,7 @@ end)
 
 ban.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 if not table.find(bannedPlayers, v) then
 plr = game:GetService("Players")[v]
 table.insert(bannedPlayers, plr.Name)
@@ -938,7 +938,7 @@ end)
 
 unban.MouseButton1Click:Connect(function()
 for i,v in pairs(GetBannedPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 table.remove(bannedPlayers, table.find(bannedPlayers, v))
 Notify("UnBanned", v .." Is now able to join the server", 5)
 end)
@@ -953,7 +953,7 @@ end)
 
 sink.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 destr = game:GetService("Players")[v].Character["HumanoidRootPart"]
 work(destr)
 end)
@@ -962,7 +962,7 @@ end)
 
 faceless.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character.Head.face)
 end)
 end
@@ -980,7 +980,7 @@ end)
 
 ragdoll.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 e = game:GetService("Players")[v].Character:FindFirstChild("Humanoid")
 work(e)
 end)
@@ -1041,7 +1041,7 @@ shutdown.MouseButton1Click:Connect(function()
 sdown = true
 Notify("Shutdown", "Shutdowning server..", 5)
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-spawn(function()
+task.spawn(function()
 if v.Name ~= LocalPlayer.Name then
 work(v)
 repeat wait() until not game:GetService("Players"):FindFirstChild(v)
@@ -1053,7 +1053,7 @@ end)
 
 rtools.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 backpack = game:GetService("Players")[v]["Backpack"] or game:GetService("Players")[v]:WaitForChild("Backpack")
 for i,t in pairs(backpack:GetChildren()) do
 if t:IsA("BackpackItem") and t:FindFirstChild("Handle") then
@@ -1066,7 +1066,7 @@ end)
 
 stools.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-spawn(function()
+task.spawn(function()
 work(game:GetService("Players")[v].Character:FindFirstChildOfClass("Humanoid"))
 repeat wait() until game:GetService("Players")[v].Character:FindFirstChildOfClass("Humanoid").Parent == nil
 for i,v in pairs(game:GetService("Players")[v].Character:GetChildren()) do
@@ -1080,7 +1080,7 @@ end)
 
 punish.MouseButton1Click:Connect(function()
 for i,v in pairs(GetPlayer(player.Text)) do
-            spawn(function()
+            task.spawn(function()
             work(game:GetService("Players")[v].Character)
 end)
 end
