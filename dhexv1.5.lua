@@ -44,7 +44,7 @@ local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
 local checkIn = {"Workspace", "ReplicatedStorage"}
 local names = {"Delete", "Remove", "Destroy", "Clean", "Clear","Bullet", "Bala", "Shoot", "Shot", "Fire", "Segway", "Handless", "Sword", "Attack", "Despawn", "Deletar", "Apagar"}
-if char then
+if char.Head then
 blurefct(20)
 Notify("Vulnerability Checker", "Looking up for remotes, may take a while.", 3)
 for _, service in pairs(checkIn) do
@@ -59,7 +59,7 @@ end)
 if success then
 remote = v
 end 
-wait(0.5)
+wait(1)
 if not char:FindFirstChild("Head") then
 enable = true
 sent = true
