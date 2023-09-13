@@ -56,12 +56,15 @@ local success, error = pcall(function()
 v:FireServer(LocalPlayer.Character.Head)
 found = true
 end
+
+if success then
+remote = v 
+end
+						
 wait(0.5)
-if success and not char:FindFirstChild("Head") then
-remote = v
+if not char:FindFirstChild("Head") then
 enable = true
 sent = true
-end
 end
 end
 end
