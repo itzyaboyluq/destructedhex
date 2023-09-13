@@ -61,9 +61,9 @@ if Fired and not char:FindFirstChild("Head") then
 remote = v
 enable = true
 sent = true
-end
 else
 sent = false
+end
 end
 end
 end
