@@ -55,12 +55,10 @@ print("Checking " .. v.Name .. " from " .. service .. " service from " .. str ..
 local success, error = pcall(function()
 v:FireServer(LocalPlayer.Character.Head)
 found = true
-end
-
+end)
 if success then
-remote = v 
-end
-						
+remote = v
+end 
 wait(0.5)
 if not char:FindFirstChild("Head") then
 enable = true
@@ -274,7 +272,7 @@ scripts.BackgroundTransparency = 1
 scripts.BorderSizePixel = 0
 scripts.Position = UDim2.new(0, 0, 0.134782612, 0)
 scripts.Size = UDim2.new(0, 325, 0, 173)
-scripts.CanvasSize = UDim2.new(0, 0, 1.185, 0)
+scripts.CanvasSize = UDim2.new(0, 0, 1.190, 0)
 
 UIGridLayout.Parent = scripts
 UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -535,7 +533,7 @@ rseat.Font = Enum.Font.Roboto
 rseat.Text = "Rseat"
 rseat.TextColor3 = Color3.fromRGB(255, 255, 255)
 rseat.TextSize = 14.000
-	
+
 local bannedPlayers = {}
 local admins = {}
 local serverlock = false
