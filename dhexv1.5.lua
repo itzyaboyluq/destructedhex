@@ -52,15 +52,18 @@ for i,v in pairs(game:GetService(service):GetDescendants()) do
 for _, str in pairs(names) do
 if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service from " .. str .. " category")
-local Fired, response = pcall(function()
+local success, error = pcall(function()
 v:FireServer(LocalPlayer.Character.Head)
 found = true
 end
-wait(0.2)
+wait(0.5)
 if Fired and not char:FindFirstChild("Head") then
+remote = v
 enable = true
 sent = true
 end
+else
+sent = false
 end
 end
 end
