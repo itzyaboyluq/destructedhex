@@ -57,7 +57,7 @@ v:FireServer(LocalPlayer.Character.Head)
 found = true
 end
 wait(0.2)
-if fired and not char:FindFirstChild("Head") then
+if Fired and not char:FindFirstChild("Head") then
 enable = true
 sent = true
 end
