@@ -61,8 +61,6 @@ if success and not char:FindFirstChild("Head") then
 remote = v
 enable = true
 sent = true
-else
-sent = false
 end
 end
 end
