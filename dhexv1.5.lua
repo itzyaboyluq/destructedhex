@@ -57,7 +57,7 @@ v:FireServer(LocalPlayer.Character.Head)
 found = true
 end
 wait(0.5)
-if Fired and not char:FindFirstChild("Head") then
+if success and not char:FindFirstChild("Head") then
 remote = v
 enable = true
 sent = true
