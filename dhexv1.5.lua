@@ -53,10 +53,10 @@ for _, str in pairs(names) do
 if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service from " .. str .. " category")
 v:FireServer(LocalPlayer.Character.Head)
-found = true
-wait(0.5)
-if not char:FindFirstChild("Head") then
 remote = v
+found = true
+wait(0.2)
+if not char:FindFirstChild("Head") then
 enable = true
 sent = true
 end
@@ -529,7 +529,7 @@ rseat.Font = Enum.Font.Roboto
 rseat.Text = "Rseat"
 rseat.TextColor3 = Color3.fromRGB(255, 255, 255)
 rseat.TextSize = 14.000
-
+	
 local bannedPlayers = {}
 local admins = {}
 local serverlock = false
