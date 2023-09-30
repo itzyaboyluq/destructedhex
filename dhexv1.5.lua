@@ -550,7 +550,7 @@ local admins = {}
 local serverlock = false
 local sdown = false
 local cam = workspace.CurrentCamera
-cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, hatless, faceless, kick, ban, unban, shutdown, slock, unslock, nuke, admin"
+cmds = "kill, sink, punish, ragdoll, nolimbs, rclothes, ranims, rtools, rsit, rmap, hatless, faceless, kick, ban, unban, shutdown, slock, unslock, nuke, admin"
 prefix = ":"
 
 function GetAPlayer(String)
