@@ -127,6 +127,7 @@ local view = Instance.new("TextButton")
 local unview = Instance.new("TextButton")
 local btools = Instance.new("TextButton")
 local nuke = Instance.new("TextButton")
+local rmap = Instance.new("TextButton")
 local naked = Instance.new("TextButton")
 local faceless = Instance.new("TextButton")
 local nolimbs = Instance.new("TextButton")
@@ -367,6 +368,16 @@ nuke.Font = Enum.Font.Roboto
 nuke.Text = "Nuke"
 nuke.TextColor3 = Color3.fromRGB(255, 255, 255)
 nuke.TextSize = 14.000
+
+rmap.Name = "rmap"
+rmap.Parent = scripts
+rmap.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+rmap.BorderSizePixel = 0
+rmap.Size = UDim2.new(0, 200, 0, 50)
+rmap.Font = Enum.Font.Roboto
+rmap.Text = "Rmap"
+rmap.TextColor3 = Color3.fromRGB(255, 255, 255)
+rmap.TextSize = 14.000
 
 naked.Name = "naked"
 naked.Parent = scripts
@@ -770,6 +781,12 @@ Notify("Destructed Admin", messageData.FromSpeaker.." Kicked "..v,5)
 work(game:GetService("Players")[v])
 end
 end
+elseif args[1] == prefix.."rmap" then
+for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+if not game:GetService("Players"):GetPlayerFromCharacter(v) then
+work(v)
+end
+end
 elseif args[1] == prefix.."rsit" then
 for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 if v:IsA("VehicleSeat") or v:IsA("Seat") then
@@ -918,8 +935,7 @@ end)
 
 nuke.MouseButton1Click:Connect(function()
 for i,c in pairs(game.Workspace:GetChildren()) do
-    all = c
-        work(all)
+        work(c)
 end
 end)
 
@@ -1083,6 +1099,14 @@ for i,v in pairs(GetPlayer(player.Text)) do
             task.spawn(function()
             work(game:GetService("Players")[v].Character)
 end)
+end
+end)
+
+rmap.MouseButton1Click:Connect(function()
+for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+if not game:GetService("Players"):GetPlayerFromCharacter(v) then
+work(v)
+end
 end
 end)
 
