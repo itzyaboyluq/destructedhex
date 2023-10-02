@@ -1,6 +1,7 @@
 -- join our discord server
 -- https://discord.gg/HjZKVFk2ue
 local version = "1.5"
+local fe = string.reverse("eu2kFVKZjH/gg.drocsid")
 
 local StarterGui = game:GetService("StarterGui")
 local showNotification = true
@@ -142,8 +143,10 @@ local ragdoll = Instance.new("TextButton")
 local shutdown = Instance.new("TextButton")
 local punish = Instance.new("TextButton")
 local rseat = Instance.new("TextButton")
+if game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents") then
 local admin = Instance.new("TextButton")
 local unadmin = Instance.new("TextButton")
+end
 local dstc = Instance.new("ScreenGui")
 local note = Instance.new("Frame")
 local text = Instance.new("TextLabel")
@@ -170,7 +173,7 @@ text.ClipsDescendants = true
 text.Position = UDim2.new(0, 0, 0.0666668862, 0)
 text.Size = UDim2.new(0, 302, 0, 97)
 text.Font = Enum.Font.SourceSansBold
-text.Text = "Commands: Luq & UI: Luca\nRun admin commands in-game without needing to worry about Filtering Enabled\nUse the internal GUI to execute commands\nVersion: ".. version .. "\nStatus: Running"
+text.Text = "Commands: Luq & UI: Luca\nRun admin commands in-game without needing to worry about Filtering Enabled\nUse the internal GUI to execute commands\nVersion: ".. version .. "\nServer: ".. fe .. "\nStatus: Running"
 text.TextColor3 = Color3.fromRGB(255, 255, 255)
 text.TextSize = 18.000
 text.TextWrapped = true
@@ -1027,7 +1030,7 @@ local toggle = false
 
 slock.MouseButton1Click:Connect(function()
 if toggle == false then
-slock.Text = "UnSlock"
+slock.Text = "Unslock"
 Notify("Server Locked", "Nobody can join the server", 5)
 serverlock = true
 toggle = true
