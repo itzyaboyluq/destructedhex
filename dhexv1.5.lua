@@ -143,10 +143,8 @@ local ragdoll = Instance.new("TextButton")
 local shutdown = Instance.new("TextButton")
 local punish = Instance.new("TextButton")
 local rseat = Instance.new("TextButton")
-if game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents") then
 local admin = Instance.new("TextButton")
 local unadmin = Instance.new("TextButton")
-end
 local dstc = Instance.new("ScreenGui")
 local note = Instance.new("Frame")
 local text = Instance.new("TextLabel")
@@ -518,7 +516,6 @@ punish.Text = "Punish"
 punish.TextColor3 = Color3.fromRGB(255, 255, 255)
 punish.TextSize = 14.000
 
-if game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents") then
 admin.Name = "admin"
 admin.Parent = scripts
 admin.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
@@ -538,7 +535,6 @@ unadmin.Font = Enum.Font.Roboto
 unadmin.Text = "Unadmin"
 unadmin.TextColor3 = Color3.fromRGB(255, 255, 255)
 unadmin.TextSize = 14.000
-end
 		
 rseat.Name = "rseat"
 rseat.Parent = scripts
@@ -1008,7 +1004,6 @@ end)
 end
 end)
 
-if game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents") then
 admin.MouseButton1Click:Connect(function()
 if player.Text == "all" or player.Text == "others" or player.Text == "" then
 rankAll()
@@ -1028,7 +1023,6 @@ unrank(v)
 end
 end
 end)
-end
 
 local toggle = false
 
