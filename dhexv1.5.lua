@@ -111,7 +111,7 @@ end
 if enable == true then
 blurefct(0)
 print("Using " .. remote.Name)
-Notify("Destructed Hex", "discord.gg/HjZKVFk2ue", 10)
+Notify("Destructed Hex", "Loaded", 10)
 local destruct = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
