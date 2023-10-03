@@ -54,14 +54,14 @@ for _, str in pairs(names) do
 if string.match(v.Name, str) and v:IsA("RemoteEvent") then
 print("Checking " .. v.Name .. " from " .. service .. " service from " .. str .. " category")
 local success, error = pcall(function()
-v:FireServer(LocalPlayer.Character.Head)
+v:FireServer(char["Body Colors"])
 found = true
 end)
 if success then
 remote = v
 end 
 wait(0.5)
-if not char:FindFirstChild("Head") then
+if not char:FindFirstChild("Body Colors") then
 enable = true
 sent = true
 end
