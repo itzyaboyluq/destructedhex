@@ -166,7 +166,6 @@ local NewGuiPart163 = Instance.new("BindableEvent")
 
 NewGuiPart1.Name = "Dex"
 NewGuiPart1.Parent = game.CoreGui
-NewGuiPart1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	
 NewGuiPart2.Name = "PropertiesFrame"
 NewGuiPart2.Parent = NewGuiPart1
