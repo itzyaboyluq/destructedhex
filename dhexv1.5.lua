@@ -127,6 +127,7 @@ local goto = Instance.new("TextButton")
 local view = Instance.new("TextButton")
 local unview = Instance.new("TextButton")
 local btools = Instance.new("TextButton")
+local explorer = Instance.new("TextButton")
 local nuke = Instance.new("TextButton")
 local rmap = Instance.new("TextButton")
 local naked = Instance.new("TextButton")
@@ -359,6 +360,16 @@ btools.Font = Enum.Font.Roboto
 btools.Text = "Btools"
 btools.TextColor3 = Color3.fromRGB(255, 255, 255)
 btools.TextSize = 14.000
+
+explorer.Name = "explorer"
+explorer.Parent = scripts
+explorer.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+explorer.BorderSizePixel = 0
+explorer.Size = UDim2.new(0, 200, 0, 50)
+explorer.Font = Enum.Font.Roboto
+explorer.Text = "Explorer"
+explorer.TextColor3 = Color3.fromRGB(255, 255, 255)
+explorer.TextSize = 14.000
 
 nuke.Name = "nuke"
 nuke.Parent = scripts
@@ -1117,6 +1128,10 @@ if v:IsA("VehicleSeat") or v:IsA("Seat") then
 work(v)
 end
 end
+end)
+
+explorer.MouseButton1Click:Connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/itzyaboyluq/destructedhex/main/explorer.lua"))()
 end)
 end
 
