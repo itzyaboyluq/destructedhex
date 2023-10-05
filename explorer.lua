@@ -276,7 +276,7 @@ NewGuiPart9.Size = UDim2.new(0, 30, 0, 20)
 NewGuiPart9.ZIndex = 2
 NewGuiPart9.Font = Enum.Font.SourceSansBold
 NewGuiPart9.FontSize = Enum.FontSize.Size14
-NewGuiPart9.Text = "DEX"
+NewGuiPart9.Text = "DHEX"
 NewGuiPart9.TextWrapped = true
 
 NewGuiPart10.Name = "Version"
